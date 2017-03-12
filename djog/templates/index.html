@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Sometimes I Write About Code{% endblock %}
+{% block body %}
+
+{% for obj in object_list %}
+  <article class="post">
+      <header>
+        <h2><a href="{% url 'post' slug=obj.slug %}">{{ obj.title }}</a></h2>
+        <div class="post-dates">
+          <p class="post-info">{{ obj.created }}</p>
+          <p class="post-info">{{ obj.modified }}</p>
+        </div>
+      </header>
+      {{ obj.html|safe }}
+      <footer>
+        <ul class="post-info">
+            {% for tag in obj.tags.all %}
+                <li class="tag"> <a href="{% url 'tag' slug=tag.slug %}">{{ tag.tag }}</a> </li>
+            {% endfor %}
+        </ul>
+      </footer>
+  </article>
+
+{% endfor %}
+{% endblock %}

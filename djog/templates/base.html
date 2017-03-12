@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/tweet-it.css' %}" />
+    <meta name="vieport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <div class="grid">
+            <header>
+                <div class="off3 c8"><h1><a href="/">Sometimes I Write About Code</a></h1></div>
+                <aside class="c2 social-media">
+                    <a href="https://twitter.com/wes_teal"><img src="{% static 'img/twitter_logo.png' %}" /></a>
+                    <a href="https://github.com/wtee"><img src="{% static 'img/github_logo.png' %}" /></a>
+                    <a href="https://bitbucket.org/wtee"><img src="{% static 'img/bitbucket_logo.png' %}" /></a>
+                    <a href="feed/"><img src="{% static 'img/feed_icon.png' %} />"</a>
+                </aside>
+                <nav class="off3 c9">
+                    <ul>
+                        {% for page in pages %}
+                        <li><a href="{% url 'page' slug=page.slug %}">{{ page.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </nav>
+            </header>
+            <main class="off3 c5">
+                {% block body %}
+                {% endblock %}
+            </main>
+        </div>
+    <script src="{% static 'js/tweet-it.js' %}"></script>
+</body>
+</html>

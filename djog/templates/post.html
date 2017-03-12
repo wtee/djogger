@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ object.title }}{% endblock %}
+{% block body %}
+  <div class="post">
+    <h2>{{ object.title }}</h2>
+    <div class="post-dates">
+      <p class="post-info">{{ object.created }}</p>
+      <p class="post-info">{{ object.modified }}</p>
+    </div>
+    {{ object.html|safe }}
+    <ul class="post-info">
+      {% for tag in object.tags.all %}
+        <li class="tag"> <a href="{% url 'tag' slug=tag.slug %}">{{ tag.tag }}</a> </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}
